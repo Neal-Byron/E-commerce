@@ -1,0 +1,17 @@
+###
+POST http://localhost:8089/api/cart
+Content-Type: application/json
+X-User-ID: 1
+
+{
+  "produktId": 1,
+  "quantity": 2
+}
+
+<> 2025-08-25T222945.500.json
+<> 2025-08-25T222935.400.json
+<> 2025-08-25T221854.400.json
+<> 2025-08-25T221210.400.json
+<> 2025-08-25T220946.400.json
+
+###
