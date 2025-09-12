@@ -2,6 +2,7 @@
 #server.port= 8089
 #spring.h2.console.enabled=true
 #spring.datasource.url=jdbc:h2:mem:test
+# management.endpoints.web.exposure.include = *
 server:
   port: 8089
 
@@ -18,4 +19,21 @@ spring:
       ddl-auto: create
     show-sql: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
 
+
+info:
+  app:
+    name: MyApp
+    description: App build by us
+    version: 1.0.0

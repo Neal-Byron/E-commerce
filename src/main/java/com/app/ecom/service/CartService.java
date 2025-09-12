@@ -15,11 +15,12 @@ import com.app.ecom.repository.CartItemRepository;
 import com.app.ecom.repository.ProduktRepository;
 import com.app.ecom.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CartService
 {
   private final UserRepository userRepository;
@@ -47,16 +48,14 @@ public class CartService
     CartItem cartItem = cartItemRepository.findByUserAndProdukt(user, produkt);
     if(cartItem != null){
       cartItem.setQuantity(cartItem.getQuantity() + cartItemRequest.getQuantity());
-      cartItem.setUnitPrice(produkt.getPrice().multiply(new BigDecimal(cartItemRequest.getQuantity())));
-      cartItemRepository.save(cartItem);
     }else{
       cartItem = new CartItem();
       cartItem.setUser(user);
       cartItem.setProdukt(produkt);
       cartItem.setQuantity(cartItemRequest.getQuantity());
-      cartItem.setUnitPrice(produkt.getPrice().multiply(new BigDecimal(cartItemRequest.getQuantity())));
-      cartItemRepository.save(cartItem);
     }
+    cartItem.setUnitPrice(produkt.getPrice().multiply(new BigDecimal(cartItemRequest.getQuantity())));
+    cartItemRepository.save(cartItem);
     return true;
   }
 
